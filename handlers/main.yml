@@ -1,5 +1,2 @@
----
-
 - name: Restart aerospike
   service: name=aerospike state=restarted enabled=yes
-  when: aerospike_restart | changed

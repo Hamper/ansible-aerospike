@@ -5,13 +5,14 @@
     src: aerospike.conf.j2
     dest: "/etc/aerospike/aerospike.conf"
     mode: 644
+  register: aerospike_restart
 
 - name: Add logrotate for logs
   template:
     src: aerospike.j2
     dest: /etc/logrotate.d/aerospike
-  register: result
+  register: aerospike_logrotate
 
 - name: Enable logrotate
   shell: logrotate -f /etc/logrotate.d/aerospike
-  when: result | changed
+  when: aerospike_logrotate | changed
